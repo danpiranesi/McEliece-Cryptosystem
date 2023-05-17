@@ -29,16 +29,32 @@ def invertibleMatrix():
 
 def permMatrix(n):
     #make a vector S of size n
+    randvector = np.array([i for i in range(n)])
+    #print(randvector)
     #find a random permutation of the vector call it X
+    permvector = np.random.permutation(randvector)
+    #print(permvector)
+
+    #match the postion of the letter in the first vector to the row # of the second vector
+
+    #create a dictionary of the permutation vector with it's postios
+    positions = {}
+    for i in range(n):
+        positions[permvector[i]] = i
+    #print(positions)
+    #value is the row,  the key is the column for the perm matric
 
     #run an algorithm to make the appropriate permutation matrix
+    #create an empty matrix P size nxn
 
-        #create an empty matrix P size nxn
-        #match the postion of the letter in the first vector to the row # of the second vector
+    P = np.zeros((n,n),int)
+    for y, x in positions.items():
+        P[positions[x]][y] = 1
 
+    #print(P)
 
-    #return P
-    pass
+    return P
+    
 
 
 # put the tree parts together
@@ -48,3 +64,5 @@ def generate_keys(): ##should we we able to input the size of the matrix you wan
     #return G^, G, P, S, t
     pass
 
+
+print(permMatrix(10))
