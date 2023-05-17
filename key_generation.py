@@ -50,9 +50,7 @@ def permMatrix(n):
     P = np.zeros((n,n),int)
     for y, x in positions.items():
         P[positions[x]][y] = 1
-
     #print(P)
-
     return P
     
 
@@ -65,4 +63,4 @@ def generate_keys(): ##should we we able to input the size of the matrix you wan
     pass
 
 
-print(permMatrix(10))
+#print(permMatrix(10))
