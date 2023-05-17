@@ -5,6 +5,7 @@
 # 4. compute m = m-hat*S^(-1)
 
 import numpy as np
+import random as rd
 
 def inversePerm(p): # takes in permuatation matrix and returns the inverse of it
     # print("OG Perm Table")
@@ -16,11 +17,15 @@ def inversePerm(p): # takes in permuatation matrix and returns the inverse of it
 #P = np.array([[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0]])
 #print(inversePerm(P))
 
-def c_hat(c, inverseP): # multiplies c (ciphertext from Silvi) by result of inversePerm(P) and returns product
-    pass
+def c_hat(c, permtable): # multiplies c (ciphertext from Silvi) by result of inversePerm(P) and returns product
+    return inversePerm(permtable).dot(c)
 
 def decode(chat): # decodes c-hat to to m-hat 
     pass
 
-def message(mhat, inverseS): # computes the message sent by Bob
+def message(mhat, inverseS): # computes the message sent by Bob (m = m-hat*S^(-1))
     pass
+
+randvector = np.array([i for i in range(4)])
+vector = np.random.permutation(randvector)
+
