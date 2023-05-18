@@ -16,9 +16,10 @@ def generatingMatrix(k,t): #create a reed-solomon generating matrix
    
     # generate a vector x of len n, values(0,1,2,3,4,...,n-1)
     x = np.array([i for i in range(n)])
-    #generate the matrix G such that each row is x rasised to a power
 
-    power = lambda ai, kpower :( ai^kpower ) % 2
+    #generate the matrix G such that each row is x rasised to a that power
+
+    power = lambda ai, kpower :(ai**kpower)%2
 
     G = np.empty([k,n], dtype=int)
 
