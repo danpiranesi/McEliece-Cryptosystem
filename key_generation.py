@@ -84,12 +84,11 @@ def permMatrix(n):
 
 # put the tree parts together
 
-def generate_keys(): ##should we we able to input the size of the matrix you want????
+def generate_keys(k): ##should we we able to input the size of the matrix you want????
     #return G^, G, P, S, t
     
     #choose t, and k
     t=5
-    k=10
 
     G , n = generatingMatrix(k,t)
 
@@ -97,8 +96,8 @@ def generate_keys(): ##should we we able to input the size of the matrix you wan
 
     S = invertibleMatrix(k)
 
-    midstep = np.matmul(S,G)
-    G_hat = np.matmul(midstep,P)
+    midstep = np.matmul(S,G) %2
+    G_hat = np.matmul(midstep,P) %2
     
     return G_hat, G, P, S, t
 
@@ -106,4 +105,4 @@ def generate_keys(): ##should we we able to input the size of the matrix you wan
 #print(permMatrix(10))
 #print(invertibleMatrix(10))
 #print(generatingMatrix(10,2))
-print(generate_keys())
+print(generate_keys(10))
