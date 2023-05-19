@@ -3,9 +3,6 @@ from array import array
 import numpy as np
 
 #Goal, be able to output a public key (G^,t)  and private keys G,P,S
-
-
-
 # create a generating matrix G of size n by k that decodable with t errors
 
 def generatingMatrix(k,t): #create a reed-solomon generating matrix
@@ -103,10 +100,10 @@ def generate_keys(): ##should we we able to input the size of the matrix you wan
     midstep = np.matmul(S,G)
     G_hat = np.matmul(midstep,P)
     
-    return G_hat , G, P , S, t
+    return G_hat, G, P, S, t
 
 
 #print(permMatrix(10))
 #print(invertibleMatrix(10))
 #print(generatingMatrix(10,2))
-#print(generate_keys())
+print(generate_keys())
