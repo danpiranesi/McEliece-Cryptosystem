@@ -12,11 +12,12 @@ def generatingMatrix(k,t): #create a reed-solomon generating matrix
     n = 2*t + k
    
     # generate a vector x of len n, values(0,1,2,3,4,...,n-1)
-    x = np.array([i for i in range(n)])
+    y= np.array([i for i in range(n)])
+    x = np.random.permutation(y)
 
     #generate the matrix G such that each row is x rasised to a that power
 
-    power = lambda ai, kpower :(ai**kpower)%2
+    power = lambda ai, kpower :(ai**kpower)
 
     G = np.empty([k,n], dtype=int)
 
