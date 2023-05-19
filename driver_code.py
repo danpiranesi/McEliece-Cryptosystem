@@ -3,6 +3,7 @@ import numpy as np
 from key_generation import generate_keys
 # from encryption import
 from decryption import decrypt
+from encryption import encryption
 
 # Step 1: KEY GENERATION
 # call key generation method
@@ -18,9 +19,12 @@ tFile.close
 
 # Step 2: ENCRYPTION
 # input message to send
+message = [1,1,0,1,1,1,0,0,1,0]
 # read .txt file to collect keys
-# encrypt message using methods
-# return ciphertext
+
+# encryption and return the ciphertext
+encrypted_message = encryption(message,G,t)
+print(encrypted_message)
 
 # Step 3: DECRYPTION
 # call decryption method
