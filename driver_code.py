@@ -29,6 +29,6 @@ print(encrypted_message)
 
 # Step 3: DECRYPTION
 # call decryption method
-original_message = decrypt(encrypted_message, P, S)
+original_message = decrypt(encrypted_message, P, S, t)
 
 #print(inversePerm(permMatrix(5)))

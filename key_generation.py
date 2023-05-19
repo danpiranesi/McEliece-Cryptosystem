@@ -12,12 +12,11 @@ def generatingMatrix(k,t): #create a reed-solomon generating matrix
     n = 2*t + k
    
     # generate a vector x of len n, values(0,1,2,3,4,...,n-1)
-    y= np.array([i for i in range(n)])
-    x = np.random.permutation(y)
+    x = np.array([i for i in range(n)])
 
     #generate the matrix G such that each row is x rasised to a that power
 
-    power = lambda ai, kpower :(ai**kpower)
+    power = lambda ai, kpower :(ai**kpower) % n
 
     G = np.empty([k,n], dtype=int)
 
@@ -46,7 +45,7 @@ def invertibleMatrix(k):
         np.linalg.inv(rand_array)
         #if we get annswer return S
     except np.linalg.LinAlgError:
-        invertibleMatrix(k)
+        return invertibleMatrix(k)
         #else try again with a differnt matrix
 
     #return s
@@ -104,6 +103,9 @@ def generate_keys(k): ##should we we able to input the size of the matrix you wa
 
 
 #print(permMatrix(10))
-#print(invertibleMatrix(10))
+#test = invertibleMatrix(10)
+#print(test)
+#print (np.linalg.inv(test))
+
 #print(generatingMatrix(10,2))
-print(generate_keys(10))
+#print(generate_keys(10))
