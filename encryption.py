@@ -32,7 +32,7 @@ def encryption(x,P,t):
     e = errorVec(len(x),t)
 
     # y = xG' + e
-    encrypted = np.matmul(x,P)+e
+    encrypted = np.matmul(x,P) % 2 # keep it binary!
     # This should be a numpy ndarray
 
     return encrypted

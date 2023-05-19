@@ -1,13 +1,15 @@
 import numpy as np
 
 from key_generation import generate_keys
-# from encryption import
-from decryption import decrypt
 from encryption import encryption
+from decryption import decrypt
+
+message = [1,1,0,1,1,1,0,0,1,0]
 
 # Step 1: KEY GENERATION
 # call key generation method
-G_hat, G, P, S, t = generate_keys()
+G_hat, G, P, S, t = generate_keys(len(message))
+print(G_hat)
 
 # put public keys (G hat and t) onto .txt files
 ghatFile = open("Ghat.txt", "w")
@@ -19,15 +21,14 @@ tFile.close
 
 # Step 2: ENCRYPTION
 # input message to send
-message = [1,1,0,1,1,1,0,0,1,0]
 # read .txt file to collect keys
 
 # encryption and return the ciphertext
-encrypted_message = encryption(message,G,t)
+encrypted_message = encryption(message, G_hat, t)
 print(encrypted_message)
 
 # Step 3: DECRYPTION
 # call decryption method
-original_message = decrypt(c, P, S)
+original_message = decrypt(encrypted_message, P, S)
 
 #print(inversePerm(permMatrix(5)))
