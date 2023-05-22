@@ -8,7 +8,7 @@ message = [1,1,0,1,1,1,0,0,1,0]
 
 # Step 1: KEY GENERATION
 # call key generation method
-G_hat, G, P, S, t = generate_keys(len(message))
+G_hat, G, P, S, t, gen = generate_keys(len(message))
 print(G_hat)
 
 # put public keys (G hat and t) onto .txt files

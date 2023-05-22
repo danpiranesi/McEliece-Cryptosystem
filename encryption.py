@@ -1,4 +1,5 @@
 import numpy as np
+import reedsolo as rs
 
 # ErrorVector
 def errorVec(n,t):
