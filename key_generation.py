@@ -6,15 +6,12 @@ import reedsolo as rs
 #Goal, be able to output a public key (G^,t)  and private keys G,P,S
 # create a generating matrix G of size n by k that decodable with t errors 
 
-def generatingMatrix(k,t): #create a reed-solomon generating matrix
+def generatingMatrix(k,n): #create a reed-solomon generating matrix
     # k is message size
     # t is number of error  t = (n-k)/2
     # caluculate an n based of t and l
-    # n = 2*t + k
-    
-    #----------
-    # DAN: why *2?
-    n = t + k
+    t = n-k
+    # n = t + k
 
     #use reedsolo to create a generator poly
     prim = rs.find_prime_polys(c_exp=12, fast_primes=True, single=True)
@@ -45,13 +42,13 @@ def generatingMatrix(k,t): #create a reed-solomon generating matrix
 
     
     #return G , n
-    return G, n , gen
+    return G, t , gen
 
 # create an inveritble  matrix S of size k by k
 
 def invertibleMatrix(k):
     #generate a random array S of size kxk
-    rand_array = np.random.randint(2^4,size = (k,k))
+    rand_array = np.random.randint(2,size = (k,k))
     
     #try to find it's inverse
     try:
@@ -96,13 +93,12 @@ def permMatrix(n):
 
 # put the tree parts together
 
-def generate_keys(k): ##should we we able to input the size of the matrix you want????
+def generate_keys(k, n): ##should we we able to input the size of the matrix you want????
     #return G^, G, P, S, t
     
     #choose t, and k
-    t = 5
 
-    G , n , gen = generatingMatrix(k,t)
+    G , t , gen = generatingMatrix(k,n)
 
     P = permMatrix(n)
 

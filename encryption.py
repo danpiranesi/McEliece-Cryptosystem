@@ -8,10 +8,10 @@ def errorVec(n,t):
     error = np.zeros(n, dtype=int)
 
     # pick t random locations to be 1
-    locations = np.random.choice(range(1, error.size), t)
+    locations = np.random.choice(error.size, t, replace = False)
+    print(locations)
     for x in locations:
         error[x] = 1 
-
     return error
 
 # Binary Encoder
@@ -27,22 +27,25 @@ def BiEncoderUTF8(script):
 
 # Encryption 
 # p + error
-def encryption(x,P,t):
+def encryption(message,Ghat,t):
 
     # Error generation
-    e = errorVec(len(x), t)
+    e = errorVec(len(message), t)
+    print(e)
 
     #-----------------------------------------
     # DAN: I think we ought to add errors here
     # y = xG' + e
 
-    noErrorVec = np.matmul(x,P)
+    noErrorVec = np.matmul(message,Ghat)
     for i, ei in enumerate(e): noErrorVec[i] += ei
 
     encrypted = noErrorVec
     #------------------------------------------
     
     # This should be a numpy ndarray
+    # encrypted = rs.RSCodec(encrypted)
+    print(encrypted)
     return encrypted
 
 def read_t(t_path):
@@ -58,7 +61,7 @@ def read_P(P_path):
     return pkey
 
 # The full encryption 
-"""def encrypt(message,key,t):
+def encrypt(message,key,t):
     # codedText = BiEncoderUTF8(message)
 
     # Take in a public key from file import
@@ -68,12 +71,9 @@ def read_P(P_path):
     codedText = message
     print ("UTF8:",codedText)
 
-    encrypted_message = encryption(message,key,t)
+    encrypted_message = rs.RSCodec(message,key,t)
     print ("Encrypted Message:",encrypted_message)
     
 # Testing
-#encrypt([1,0,1],np.array([[0, 1, 0],[1, 0, 0],[0, 0, 1]]),5)"""
-
-def encrypt(message, t):
-    return rs.RSCodec.encode(message, t)
+#encrypt([1,0,1],np.array([[0, 1, 0],[1, 0, 0],[0, 0, 1]]),5)
 

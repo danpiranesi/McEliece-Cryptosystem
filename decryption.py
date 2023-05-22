@@ -13,7 +13,7 @@ def decrypt(ciphertext, permutation_matrix, non_singular_matrix, t):
     print(t)
 
     # Step 2: Decode using reddsolo package
-    rmes, recc, errata_pos = rs.RSCodec.decode(syndrome, t)
+    rmes, recc, errata_pos = rs.rs_correct_msg(syndrome, t)
     # print(list(rmes))
 
     # Step 3: Convert syndrome to original message by multiplying by inverse of non singular matrix made in key generation
