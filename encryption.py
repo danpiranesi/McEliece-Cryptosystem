@@ -1,4 +1,5 @@
 import numpy as np
+import reedsolo as rs
 
 # ErrorVector
 def errorVec(n,t):
@@ -19,7 +20,7 @@ def errorVec(n,t):
 ### Thus the original implementation will return a np.array of list objs in those situation
 def BiEncoderUTF8(script):
     # Taking in a message x and encode in binary
-    #listBi =  list(list(format(x, 'b')) for x in bytearray(script, "utf-8"))
+    # listBi =  list(list(format(x, 'b')) for x in bytearray(script, "utf-8"))
     BiString= ("".join(format(x, 'b')) for x in bytearray(script, "utf-8"))
     #binary = np.array(listBi)
     return BiString
@@ -29,12 +30,19 @@ def BiEncoderUTF8(script):
 def encryption(x,P,t):
 
     # Error generation
-    e = errorVec(len(x),t)
+    e = errorVec(len(x), t)
 
+    #-----------------------------------------
+    # DAN: I think we ought to add errors here
     # y = xG' + e
-    encrypted = np.matmul(x,P) % 2 # keep it binary!
-    # This should be a numpy ndarray
 
+    noErrorVec = np.matmul(x,P)
+    for i, ei in enumerate(e): noErrorVec[i] += ei
+
+    encrypted = noErrorVec
+    #------------------------------------------
+    
+    # This should be a numpy ndarray
     return encrypted
 
 def read_t(t_path):
@@ -50,7 +58,7 @@ def read_P(P_path):
     return pkey
 
 # The full encryption 
-def encrypt(message,key,t):
+"""def encrypt(message,key,t):
     # codedText = BiEncoderUTF8(message)
 
     # Take in a public key from file import
@@ -63,8 +71,9 @@ def encrypt(message,key,t):
     encrypted_message = encryption(message,key,t)
     print ("Encrypted Message:",encrypted_message)
     
-
 # Testing
-encrypt([1,0,1],np.array([[0, 1, 0],[1, 0, 0],[0, 0, 1]]),5)
+#encrypt([1,0,1],np.array([[0, 1, 0],[1, 0, 0],[0, 0, 1]]),5)"""
 
+def encrypt(message, t):
+    return rs.RSCodec.encode(message, t)
 
