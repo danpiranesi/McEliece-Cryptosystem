@@ -76,7 +76,7 @@ G = np.array([[1,0, 0, 0, 1, 1, 0],
               [0, 0, 0, 1, 1, 1, 1]])
 m = [1,1,0,1]
 
-testDec = decryptor(c,S,P,G,m)
-print(testDec.decrypted_message)
-print(testDec.isCorrect)
+#testDec = decryptor(c,S,P,G,m)
+#print(testDec.decrypted_message)
+#print(testDec.isCorrect)
     
