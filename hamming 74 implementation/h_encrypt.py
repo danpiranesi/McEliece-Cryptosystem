@@ -4,12 +4,9 @@ import numpy as np
 def encryption(message,G):
     # G transposing
     G_t = np.transpose(G)
-    print("Transposed Matrix:","\n",G_t)
-
     # x = G^T*p, Pre-mult and modulo 2
-    encoded = np.matmul(message,G)%2
-    print("encoded:",encoded)
-    
+    encoded = np.matmul(message,G_t)%2
+
     return encoded
 
 
