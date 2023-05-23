@@ -7,7 +7,7 @@ message = [1,1,0,1,1,1,0,0,1,0]
 
 # Step 1: KEY GENERATION
 # call key generation method
-G_hat, G, P, S, t, gen = generate_keys(len(message), 16)
+G_hat, G, P, S, t, gen = generate_keys(len(message), 10)
 #print(G_hat)
 #print(G)
 #print(S)
@@ -27,3 +27,4 @@ print(encrypted_message)
 # Step 3: DECRYPTION
 # call decryption method
 original_message = decrypt(encrypted_message, P, S, t)
+print(original_message)

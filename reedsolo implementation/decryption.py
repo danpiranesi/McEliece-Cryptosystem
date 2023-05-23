@@ -14,11 +14,15 @@ def decrypt(ciphertext, permutation_matrix, non_singular_matrix, t):
 
     # Step 2: Decode using reddsolo package
     rmes, recc, errata_pos = rs.rs_correct_msg(syndrome, t)
-    # print(list(rmes))
+
+    #GEORGE - resize
+
+    cor_size = recc[0:(len(non_singular_matrix))]
+    print(cor_size)
 
     # Step 3: Convert syndrome to original message by multiplying by inverse of non singular matrix made in key generation
-    decrypted_message = np.matmul(rmes, np.linalg.inv(non_singular_matrix)) # % 2 %2 to remain in binary field
-
+    decrypted_message = np.matmul(cor_size, np.linalg.inv(non_singular_matrix))%2 # to remain in binary field
+    
     return decrypted_message
 
 def inversePerm(p): # takes in permuatation matrix and returns the inverse of it

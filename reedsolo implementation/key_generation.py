@@ -8,20 +8,20 @@ import reedsolo as rs
 
 def generatingMatrix(k,n): #create a reed-solomon generating matrix
     # k is message size
-    # t is number of error  t = (n-k)/2
-    # caluculate an n based of t and l
-    t = n-k
-    # n = t + k
+    # t is number of errors  t = (n-k)/2
+    t = (n-k)//2
 
     #use reedsolo to create a generator poly
+    #code from documentation for set-up
     prim = rs.find_prime_polys(c_exp=12, fast_primes=True, single=True)
     rs.init_tables(c_exp=12, prim=prim)
 
+    
     gen = rs.rs_generator_poly(n-1)
     gen_poly = [int(i) for i in gen]
     #print(gen_poly)
    
-    # generate a vector x of len n, values(0,1,2,3,4,...,n-1)
+    # generate a vector x of len n from the gen_poly
     x = np.array(gen_poly)
 
     #generate the matrix G such that each row is x rasised to a that power
@@ -41,7 +41,7 @@ def generatingMatrix(k,n): #create a reed-solomon generating matrix
         G[i] = np.array(new_row)
 
     
-    #return G , n
+    #return G , t
     return G, t , gen
 
 # create an inveritble  matrix S of size k by k
@@ -104,8 +104,8 @@ def generate_keys(k, n): ##should we we able to input the size of the matrix you
 
     S = invertibleMatrix(k)
 
-    midstep = np.matmul(S,G) % 2
-    G_hat = np.matmul(midstep,P) % 2
+    midstep = np.matmul(S,G) #% 2
+    G_hat = np.matmul(midstep,P) #% 2
 
     return G_hat, G, P, S, t, gen
 
