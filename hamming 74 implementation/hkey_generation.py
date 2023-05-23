@@ -2,12 +2,10 @@
 from re import T
 import numpy as np
 
-
 def invertibleMatrix(k, matrix_ops):
     #generate a random array S of size kxk
     rand_array = np.random.randint(2,size = (k,k))
     matrix_ops += 1
-    
     #try to find it's inverse
     try:
         np.linalg.inv(rand_array)
@@ -16,11 +14,8 @@ def invertibleMatrix(k, matrix_ops):
     except np.linalg.LinAlgError:
         return invertibleMatrix(k,matrix_ops)
         #else try again with a differnt matrix
-
     #return s
     return rand_array, matrix_ops
-
-
 
 def permMatrix(n, matrix_ops):
     #  create a permutation matrix P of size n by n
@@ -61,26 +56,8 @@ def gen_keys(matrix_ops):
 
     S, matrix_ops = invertibleMatrix(4,matrix_ops)
 
-    #When do we want to convert to binary? - George
-    midstep = np.matmul(S,G) % 2
-    G_hat = np.matmul(midstep,P) % 2
+
+    G_hat = np.matmul(np.matmul(S, G),P) % 2
     matrix_ops += 2
 
     return G_hat, G, P, S, matrix_ops
-
-"""
-G_hat, G, P, S = gen_keys()
-
-print("g")
-print(G)
-
-print("s")
-print(S)
-
-print("p")
-print(P)
-
-print("g^")
-print(G_hat)
-"""
-

@@ -1,6 +1,6 @@
 import numpy as np
 from hkey_generation import gen_keys
-from h_encrypt import encryption
+import h_encrypt
 import h_decrypt
 import matplotlib.pyplot as plt
 
@@ -11,29 +11,28 @@ def run4bit(message, matrix_ops):
     # call key generation method
     G_hat, G, P, S, matrix_ops = gen_keys(matrix_ops)
     t=1
-    #print(G_hat)
-    #print(G)
-    #print(S)
-    #print(P)
 
     # Step 2: ENCRYPTION
     # encryption and return the ciphertext
-    c, matrix_ops = encryption(message, G_hat, matrix_ops)
+    #c, matrix_ops = encryption(message, G_hat, matrix_ops)
+    encryptie = h_encrypt.encryptor(message, G_hat, matrix_ops, t)
+    c = encryptie.get_encrypted()
+    matrix_ops = encryptie.matops
 
-    #print("encrypted:")
-    #print(c)
+    print("Encoded: " + str(encryptie.c_prime))
+    print("Encrypted: " + str(encryptie.cipher))
+    print("Error Introduced: " + str(encryptie.z))
 
     # Step 3: DECRYPTION
-    decryptie = h_decrypt.decryptor(c,S,P,G,message, matrix_ops) # TODO make output from encryption = c
-    original_message = decryptie.decrypted_message
-
+    decryptie = h_decrypt.decryptor(c,S,P,G,message, matrix_ops)
+    decrypted_message = decryptie.decrypted_message
+    print("Message: " + str(decryptie.decrypted_message))
     matrix_ops = decryptie.matops
 
-    #print("decrptyed")
-    #print(original_message)
+    if False in decryptie.isCorrect: # solution to possible errors we were encountering
+        run4bit(message, matrix_ops)
 
-    return c, original_message, matrix_ops
-
+    return c, decrypted_message, matrix_ops
 #run4bit(message, 0)
 
 def parse_4bits(message):
@@ -46,13 +45,9 @@ def parse_4bits(message):
             four = message[0:4]
             del(message[0:4])
             parsed.append(four)
-
         return parsed
     else:
         return "sorry, I can only parse messages who's length are mulptples of 4"
-
-
-
 
 def runtime_exp(n): #how many different trials
     message_sizes = []
@@ -72,13 +67,14 @@ def runtime_exp(n): #how many different trials
         operation_list.append(ops)
     return message_sizes, operation_list
         
+# sizes, mat_ops = runtime_exp(50)
+# print(sizes)
+# print(mat_ops)
 
-sizes, mat_ops = runtime_exp(50)
-print(sizes)
-print(mat_ops)
+# plt.scatter(sizes, mat_ops)
+# plt.xlabel("Size of Input Message (bits)")
+# plt.ylabel("Number of Matrix Operations")
+# plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
+# plt.show()
 
-plt.scatter(sizes, mat_ops)
-plt.xlabel("Size of Input Message (bits)")
-plt.ylabel("Number of Matrix Operations")
-plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
-plt.show()
+run4bit(message, 0)
