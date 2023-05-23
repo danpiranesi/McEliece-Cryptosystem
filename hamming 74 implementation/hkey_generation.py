@@ -77,6 +77,5 @@ print(P)
 
 print("g^")
 print(G_hat)
-
 """
 

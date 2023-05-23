@@ -10,6 +10,7 @@ message = [1,1,1,1]
 G_hat, G, P, S, = gen_keys()
 t=1
 print(G_hat)
+
 #print(G)
 #print(S)
 #print(P)
@@ -25,4 +26,6 @@ print(c)
 # Step 3: DECRYPTION
 decryptie = h_decrypt.decryptor(c,S,P,G,message) # TODO make output from encryption = c
 original_message = decryptie.decrypted_message
+
+print("decrptyed")
 print(original_message)

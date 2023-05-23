@@ -18,11 +18,17 @@ class decryptor:
             P_inverse = np.linalg.inv(self.P) #invert permutation
             S_inverse = np.linalg.inv(self.S) #invert scrambler
             c_prime = np.matmul(self.c, P_inverse) #calculate cprime
-
+            
+            """
+            #test to see if keys are correct
+            decoded_c = c_prime[0:4]
+            decrypted = np.matmul(decoded_c, S_inverse) % 2
+            """
+            
             m_prime = self.error_correction(c_prime) # check message with 
-            #print(m_prime)
-            #print(S_inverse)
-
+            print(m_prime)
+            print(S_inverse)
+            
             decrypted = np.matmul(m_prime, S_inverse) % 2
             return decrypted
         
