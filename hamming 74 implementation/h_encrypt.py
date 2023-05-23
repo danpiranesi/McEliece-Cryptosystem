@@ -15,5 +15,5 @@ def encryption(message,G):
 P = [1,0,1,1]
 G_trans = [[1,1,0,1],[1,0,1,1],[1,0,0,0],[0,1,1,1],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
 G = np.transpose(G_trans)
-print(G)
+#print(G)
 encryption(P,G)

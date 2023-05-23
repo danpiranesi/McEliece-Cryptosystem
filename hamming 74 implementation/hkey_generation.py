@@ -63,6 +63,7 @@ def gen_keys():
 
     return G_hat, G, P, S
 
+"""
 G_hat, G, P, S = gen_keys()
 
 print("g")
@@ -77,5 +78,5 @@ print(P)
 print("g^")
 print(G_hat)
 
-
+"""
 

@@ -1,15 +1,15 @@
 import numpy as np
 from hkey_generation import gen_keys
-from h_encrypt import encryption, encrypt
+from h_encrypt import encryption
 import h_decrypt
 
-message = [1,1,0,1,1,1,0,0,1,0]
+message = [1,1,1,1]
 
 # Step 1: KEY GENERATION
 # call key generation method
 G_hat, G, P, S, = gen_keys()
 t=1
-#print(G_hat)
+print(G_hat)
 #print(G)
 #print(S)
 #print(P)
@@ -17,10 +17,10 @@ t=1
 
 # Step 2: ENCRYPTION
 # encryption and return the ciphertext
-#encrypted_message = encryption(message, G_hat, t)
+c = encryption(message, G_hat)
 
-#print("encrypted:")
-#print(encrypted_message)
+print("encrypted:")
+print(c)
 
 # Step 3: DECRYPTION
 decryptie = h_decrypt.decryptor(c,S,P,G,message) # TODO make output from encryption = c
