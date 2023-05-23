@@ -2,12 +2,13 @@ import numpy as np
 import math
 
 class decryptor:
-    def __init__(self, c, S, P, G, m):
+    def __init__(self, c, S, P, G, m, matops):
         self.c = c #cipher
         self.S = S #scrambler
         self.P = P #permutation
         self.G = G #generator
         self.m = m #message
+        self.matops = matops
 
         self.decrypted_message = self.decrypt()
         self.isCorrect = (self.m == self.decrypted_message)
@@ -18,11 +19,14 @@ class decryptor:
             P_inverse = np.linalg.inv(self.P) #invert permutation
             S_inverse = np.linalg.inv(self.S) #invert scrambler
             c_prime = np.matmul(self.c, P_inverse) #calculate cprime
+            self.matops += 1
             
             
             #test to see if keys are correct
             decoded_c = c_prime[0:4]
+            #TODO is there an easy way to turn decrytped from floats to int?
             decrypted = np.matmul(decoded_c, S_inverse) % 2
+            self.matops +=1
             """
             
             m_prime = self.error_correction(c_prime) # check message with 
