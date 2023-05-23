@@ -19,7 +19,7 @@ class decryptor:
             S_inverse = np.linalg.inv(self.S) #invert scrambler
             c_prime = np.matmul(self.c, P_inverse) #calculate cprime
             
-            """
+            
             #test to see if keys are correct
             decoded_c = c_prime[0:4]
             decrypted = np.matmul(decoded_c, S_inverse) % 2
@@ -30,6 +30,7 @@ class decryptor:
             print(S_inverse)
             
             decrypted = np.matmul(m_prime, S_inverse) % 2
+            """
             return decrypted
         
     def error_correction(self, c_prime):
