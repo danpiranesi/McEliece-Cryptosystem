@@ -14,7 +14,7 @@ def run4bit(message, matrix_ops):
 
     # Step 2: ENCRYPTION
     # encryption and return the ciphertext
-    # c, matrix_ops = encryption(message, G_hat, matrix_ops)
+    #c, matrix_ops = encryption(message, G_hat, matrix_ops)
     encryptie = h_encrypt.encryptor(message, G_hat, matrix_ops, t)
     c = encryptie.get_encrypted()
     matrix_ops = encryptie.matops
@@ -66,15 +66,16 @@ def runtime_exp(n): #how many different trials
 
         operation_list.append(ops)
     return message_sizes, operation_list
-        
-# sizes, mat_ops = runtime_exp(50)
-# print(sizes)
-# print(mat_ops)
 
-# plt.scatter(sizes, mat_ops)
-# plt.xlabel("Size of Input Message (bits)")
-# plt.ylabel("Number of Matrix Operations")
-# plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
-# plt.show()
 
-run4bit(message, 0)
+def main():     
+    sizes, mat_ops = runtime_exp(50)
+
+    plt.scatter(sizes, mat_ops)
+    plt.xlabel("Size of Input Message (bits)")
+    plt.ylabel("Number of Matrix Operations")
+    plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
+    plt.show()
+
+if __name__ == "__main__":
+    main()
