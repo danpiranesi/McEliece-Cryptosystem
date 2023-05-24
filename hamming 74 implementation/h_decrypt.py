@@ -15,10 +15,10 @@ class decryptor:
 
     def decrypt(self):
             # decrypt message given SPG
-            print(self.S)
+            #print(self.S)
             P_inverse = np.linalg.inv(self.P) #invert permutation
             S_inverse = np.linalg.inv(self.S) #invert scrambler
-            print(S_inverse)
+            #print(S_inverse)
             
             c_prime = np.matmul(self.c, P_inverse) #calculate cprime
             self.matops += 1
@@ -41,8 +41,10 @@ class decryptor:
         
     def error_correction(self, c_prime):
             syndrome = np.matmul(c_prime, np.transpose(self.G)) % 2
+            self.matops += 1
             #print(syndrome)
             syndrome_parity = np.ma.size(syndrome, 0) # mask it
+            self.matops += 1
             syndrome_total = 0
 
             for i in range(syndrome_parity):

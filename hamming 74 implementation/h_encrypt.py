@@ -14,6 +14,7 @@ class encryptor:
 
         def become_error_ridden(self):
             self.z = np.zeros(self.n)
+            self.matops += 1
             idx_list = np.random.choice(self.n, self.t, replace=False)
             for idx in idx_list:
                 self.z[idx] = 1

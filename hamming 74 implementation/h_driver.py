@@ -67,14 +67,17 @@ def runtime_exp(n): #how many different trials
         operation_list.append(ops)
     return message_sizes, operation_list
         
-# sizes, mat_ops = runtime_exp(50)
-# print(sizes)
-# print(mat_ops)
 
-# plt.scatter(sizes, mat_ops)
-# plt.xlabel("Size of Input Message (bits)")
-# plt.ylabel("Number of Matrix Operations")
-# plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
-# plt.show()
+def main():
+    sizes, mat_ops = runtime_exp(100)
+    # print(sizes)
+    # print(mat_ops)
+    plt.scatter(sizes, mat_ops)
+    plt.xlabel("Size of Input Message (bits)")
+    plt.ylabel("Number of Matrix Operations")
+    plt.title("Size of Message v Matrix Operation using Hamming [7,4] codes")
+    plt.show()
+    #run4bit(message, 0)
 
-run4bit(message, 0)
+if __name__ == "__main__":
+    main()

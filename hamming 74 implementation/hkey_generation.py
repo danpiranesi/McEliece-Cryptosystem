@@ -38,10 +38,11 @@ def permMatrix(n, matrix_ops):
     #value is the row,  the key is the column for the perm matric
 
     #run an algorithm to make the appropriate permutation matrix
-    #create an empty matrix P size nxn
 
+    #create an empty matrix P size nxn
     P = np.zeros((n,n),int)
     matrix_ops+=1
+    #go through positions dictionary to fill out the matrix
     for y, x in positions.items():
         P[positions[x]][y] = 1
     #print(P)
@@ -50,6 +51,7 @@ def permMatrix(n, matrix_ops):
 
 def gen_keys(matrix_ops):
 
+    #fixed hamming (7,4)
     G = np.array([[1,0,0,0,1,1,1],[0,1,0,0,0,1,1],[0,0,1,0,1,0,1],[0,0,0,1,1,1,0]])
 
     P, matrix_ops = permMatrix(7, matrix_ops)
