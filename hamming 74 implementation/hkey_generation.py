@@ -36,11 +36,11 @@ def permMatrix(n, matrix_ops):
 
     #make a vector S of size n
     ordervector = np.array([i for i in range(n)])
-    #print(randvector)
+    
     #find a random permutation of the vector call it X
     permvector = np.random.permutation(ordervector)
     matrix_ops+=1
-    #print(permvector)
+    
 
     #match the postion of the letter in the first vector to the row # of the second vector
 
@@ -48,7 +48,7 @@ def permMatrix(n, matrix_ops):
     positions = {}
     for i in range(n):
         positions[permvector[i]] = i
-    #print(positions)
+    
     #value is the row,  the key is the column for the perm matric
 
     #run an algorithm to make the appropriate permutation matrix
@@ -59,7 +59,7 @@ def permMatrix(n, matrix_ops):
     #go through positions dictionary to fill out the matrix
     for y, x in positions.items():
         P[positions[x]][y] = 1
-    #print(P)
+    
     return P, matrix_ops
     
 
