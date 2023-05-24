@@ -2,6 +2,20 @@
 from re import T
 import numpy as np
 
+"""
+The following were very key resources for the devolopment of these methods:
+    general understanding
+        meceliece:
+            http://www-math.ucdenver.edu/~wcherowi/courses/m5410/ctcmcel.html
+            https://www.youtube.com/watch?v=fLwMvbfr76g&t=520s
+            https://en.wikipedia.org/wiki/McEliece_cryptosystem
+        error correcting codes:
+            https://www.youtube.com/watch?v=kO6UlCY6idg
+            https://www.youtube.com/watch?v=as_mNSx6OG8
+    matrix operations
+        https://www.youtube.com/watch?v=8OSAsm5tTwU&t=545s
+        https://www.youtube.com/watch?v=fhgHRj2sfq0&t=2s
+"""
 def invertibleMatrix(k, matrix_ops):
     #generate a random array S of size kxk
     rand_array = np.random.randint(2,size = (k,k))
