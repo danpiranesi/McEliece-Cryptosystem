@@ -1,2 +1,9 @@
 # McEliece-Cryptosystem
-Implementation of McEliece Cryptosystem using Python
+Two attempted implementations of the McEliece Cryptosystem using Reed–Solomon and (7,4) Hamming error correcting codes.
+
+Our implementation of the McEliece Cryptosystem using Reed–Solomon codes is lacking operational error generation and decoding functionality. When we first began building, were niave to assume that the cryptosystem would be functional without any sort of error generation and correction. We figured error generation and correction were unecessarry since we were conducting our experiments in a local environment. After many hours of debugging, this oversight eventually led to the realization that  error generation and correction were necessarry elements to unravling the message we inputted. Looking at the math to generate and correct errors, none of us could even begin to understand what was going on. Due to the timeline of this project, we saw it unreasonable to learn this math, and we entered a mid-life crisis of sorts.
+
+Unsure of where to go next, we stumbled upon the reedsolo python library (https://pypi.org/project/reedsolo/) and dreamed it could do all the high level math we could not comprehend. We ran with this assumption for about a day, and again, after a many hours of debugging, realized it was inadequate for the McEliece Cryptosystem. 
+
+With our spirits at their lowest, we took a step back and examined what we were trying to accomplish from a 30,000 foot view. Doing this allowed us to see that while most literature related to the McEliece Cryptosystem as a quantum proof encryption protocol talks of high-level error correcting codes such as Reed-Solomon codes, there are simpler codes out there. In fact, the first error correcting code on record, Hamming codes, are very simple, and something that our undergraduate level brains could comprehend. It only took a matter of hours to get a rickety implementation of the McEliece Cryptosystem using (7,4) Hamming codes. This provided us with enough to begin expermentation: 
+
