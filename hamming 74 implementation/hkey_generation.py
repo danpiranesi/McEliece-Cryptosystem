@@ -72,8 +72,9 @@ def gen_keys(matrix_ops):
 
     S, matrix_ops = invertibleMatrix(4,matrix_ops)
 
-
+    #multiply it together
     G_hat = np.matmul(np.matmul(S, G),P) % 2
     matrix_ops += 2
 
+    #the private key t is assumed to be 1, because hamming 7,4 can only correct 1 error
     return G_hat, G, P, S, matrix_ops
