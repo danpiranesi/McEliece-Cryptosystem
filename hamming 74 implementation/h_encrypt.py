@@ -18,6 +18,7 @@ class encryptor:
             # 1. Make an array of size n with zeros
             self.z = np.zeros(self.n)
             # 2. Ｃhoosing t random indexes in this array to be error (1)
+            self.matops += 1
             idx_list = np.random.choice(self.n, self.t, replace=False)
             for idx in idx_list:
                 self.z[idx] = 1
