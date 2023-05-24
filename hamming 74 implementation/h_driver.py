@@ -14,7 +14,7 @@ def run4bit(message, matrix_ops):
 
     # Step 2: ENCRYPTION
     # encryption and return the ciphertext
-    #c, matrix_ops = encryption(message, G_hat, matrix_ops)
+    # c, matrix_ops = encryption(message, G_hat, matrix_ops)
     encryptie = h_encrypt.encryptor(message, G_hat, matrix_ops, t)
     c = encryptie.get_encrypted()
     matrix_ops = encryptie.matops
